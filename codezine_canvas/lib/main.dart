@@ -4,6 +4,7 @@ import 'package:codezine_canvas/pie_chart_screen.dart';
 import 'package:codezine_canvas/sample1_screen.dart';
 import 'package:codezine_canvas/sample2_screen.dart';
 import 'package:codezine_canvas/sample3_screen.dart';
+import 'package:codezine_canvas/touch_rect_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -106,6 +107,18 @@ class InitialScreen extends StatelessWidget {
               );
             },
             child: const Text('PieChartScreen'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const TouchRectScreen(),
+                ),
+              );
+            },
+            child: const Text('TouchRectScreen'),
           ),
         ],
       ),
