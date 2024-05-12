@@ -1,5 +1,6 @@
 import 'package:codezine_canvas/line_chart_screen.dart';
 import 'package:codezine_canvas/path_combine_screen.dart';
+import 'package:codezine_canvas/pie_chart_screen.dart';
 import 'package:codezine_canvas/sample1_screen.dart';
 import 'package:codezine_canvas/sample2_screen.dart';
 import 'package:codezine_canvas/sample3_screen.dart';
@@ -93,6 +94,18 @@ class InitialScreen extends StatelessWidget {
               );
             },
             child: const Text('PathCombineScreen'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const PieChartScreen(),
+                ),
+              );
+            },
+            child: const Text('PieChartScreen'),
           ),
         ],
       ),
