@@ -36,7 +36,7 @@ class LineChartPainter extends CustomPainter {
 
     canvas.translate(20, size.height - 20);
     canvas.scale(1, -1);
-    //canvas.save();
+    // canvas.save();
 
     for (double i = 0.0; i < size.width - 40; i = i + 20.0) {
       canvas.drawLine(Offset(i, 0), Offset(i, size.height - 40), paint1);
