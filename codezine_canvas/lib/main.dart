@@ -1,4 +1,5 @@
 import 'package:codezine_canvas/sample1_screen.dart';
+import 'package:codezine_canvas/sample2_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,18 @@ class InitialScreen extends StatelessWidget {
               );
             },
             child: const Text('Sample1Screen'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Sample2Screen(),
+                ),
+              );
+            },
+            child: const Text('Sample2Screen'),
           ),
         ],
       ),
