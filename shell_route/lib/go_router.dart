@@ -9,7 +9,7 @@ final _shellNavigatorAKey = GlobalKey<NavigatorState>();
 final _shellNavigatorBKey = GlobalKey<NavigatorState>();
 
 final goRouter = GoRouter(
-  navigatorKey: _rootNavigatorKey,
+  // navigatorKey: _rootNavigatorKey,
   initialLocation: '/a',
   routes: [
     StatefulShellRoute.indexedStack(
@@ -18,7 +18,7 @@ final goRouter = GoRouter(
       },
       branches: [
         StatefulShellBranch(
-          navigatorKey: _shellNavigatorAKey,
+          // navigatorKey: _shellNavigatorAKey,
           routes: [
             GoRoute(
               path: '/a',
@@ -40,7 +40,7 @@ final goRouter = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          navigatorKey: _shellNavigatorBKey,
+          // navigatorKey: _shellNavigatorBKey,
           routes: [
             GoRoute(
               path: '/b',
