@@ -16,6 +16,7 @@ final _shellNavigatorBKey = GlobalKey<NavigatorState>();
  *  ・StatefulShellBranch
  *  ・NoTransitionPage
  *  ・GoRouterのbuilderとpageBuilderの違い
+ *  ・StatefulNavigationShell.goBranch
  */
 
 final goRouter = GoRouter(
