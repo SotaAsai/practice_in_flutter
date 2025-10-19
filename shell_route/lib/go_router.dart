@@ -8,6 +8,16 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAKey = GlobalKey<NavigatorState>();
 final _shellNavigatorBKey = GlobalKey<NavigatorState>();
 
+/**
+ * ・navigatotKeyのパラメータをコメントアウトしても同じ挙動
+ * ・挙動がわかっていないクラスやメソッドなど
+ *  ・StatefulShellRoute
+ *  ・StatefulShellRoute.indexedStack
+ *  ・StatefulShellBranch
+ *  ・NoTransitionPage
+ *  ・GoRouterのbuilderとpageBuilderの違い
+ */
+
 final goRouter = GoRouter(
   // navigatorKey: _rootNavigatorKey,
   initialLocation: '/a',
