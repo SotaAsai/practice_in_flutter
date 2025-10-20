@@ -4,6 +4,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 class ListScreen extends StatefulWidget {
+  const ListScreen({super.key});
+
   @override
   _ListScreenState createState() => _ListScreenState();
 }
