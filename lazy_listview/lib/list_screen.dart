@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 const itemViewHeight = 50.0;
 
-class ListScreen extends StatefulWidget {
+class ListScreen extends StatefulHookWidget {
   const ListScreen({super.key});
 
   @override
@@ -19,31 +20,6 @@ class _ListScreenState extends State<ListScreen> {
 
   bool _isLoading = true;
   bool _hasMore = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _isLoading = true;
-    _hasMore = true;
-    _loadFirst();
-  }
-
-  void _loadFirst() {
-    _isLoading = true;
-    _itemFetcher.fetch().then((List<WordPair> fetchedList) {
-      if (fetchedList.isEmpty) {
-        setState(() {
-          _isLoading = false;
-          _hasMore = false;
-        });
-      } else {
-        setState(() {
-          _isLoading = false;
-          _pairList.addAll(fetchedList);
-        });
-      }
-    });
-  }
 
   void _loadMore(double windowHeight) {
     _isLoading = true;
@@ -65,11 +41,23 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     print('ビルド');
-    print('ウィンドウの高さ:${MediaQuery.sizeOf(context).height}');
+    // 2回目以降は実行されない関数を書きたい。やっぱりuseEffectがいいか？
+    useEffect(() {
+      print('useEffectの関数実行');
+      _isLoading = true;
+      _hasMore = true;
+      double windowHeight = MediaQuery.sizeOf(context).height;
+      _loadMore(windowHeight);
+      return null;
+    }, []);
+
+    print('ビルド');
+    // print('ウィンドウの高さ:${MediaQuery.sizeOf(context).height}');
     return ListView.builder(
       // Need to display a loading tile if more items are coming
       itemCount: _hasMore ? _pairList.length + 1 : _pairList.length,
       itemBuilder: (BuildContext context, int index) {
+        print('インデックス:$index');
         // Uncomment the following line to see in real time how ListView.builder works
         // print('ListView.builder is building index $index');
         if (index >= _pairList.length) {
