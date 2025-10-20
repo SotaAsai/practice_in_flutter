@@ -23,7 +23,7 @@ class _ListScreenState extends State<ListScreen> {
 
   void _loadMore(double windowHeight) {
     _isLoading = true;
-    _itemFetcher.fetchMore(windowHeight).then((List<WordPair> fetchedList) {
+    _itemFetcher.fetch(windowHeight).then((List<WordPair> fetchedList) {
       if (fetchedList.isEmpty) {
         setState(() {
           _isLoading = false;
@@ -40,10 +40,7 @@ class _ListScreenState extends State<ListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('ビルド');
-    // 2回目以降は実行されない関数を書きたい。やっぱりuseEffectがいいか？
     useEffect(() {
-      print('useEffectの関数実行');
       _isLoading = true;
       _hasMore = true;
       double windowHeight = MediaQuery.sizeOf(context).height;
@@ -51,8 +48,6 @@ class _ListScreenState extends State<ListScreen> {
       return null;
     }, []);
 
-    print('ビルド');
-    // print('ウィンドウの高さ:${MediaQuery.sizeOf(context).height}');
     return ListView.builder(
       // Need to display a loading tile if more items are coming
       itemCount: _hasMore ? _pairList.length + 1 : _pairList.length,
@@ -87,29 +82,10 @@ class _ListScreenState extends State<ListScreen> {
 
 class _ItemFetcher {
   final _count = 103;
-  final _itemsPerPage = 5;
+  // final _itemsPerPage = 5;
   int _currentPage = 0;
 
-  // This async function simulates fetching results from Internet, etc.
-  Future<List<WordPair>> fetch() async {
-    final list = <WordPair>[];
-
-    // double windowHeight = MediaQuery.sizeOf(context).height;
-    // print('windowHeight:$windowHeight');
-
-    final n = min(_itemsPerPage, _count - _currentPage * _itemsPerPage);
-    // Uncomment the following line to see in real time now items are loaded lazily.
-    // print('Now on page $_currentPage');
-    await Future.delayed(Duration(seconds: 1), () {
-      for (int i = 0; i < n; i++) {
-        list.add(WordPair.random());
-      }
-    });
-    _currentPage++;
-    return list;
-  }
-
-  Future<List<WordPair>> fetchMore(double windowHeight) async {
+  Future<List<WordPair>> fetch(double windowHeight) async {
     final list = <WordPair>[];
 
     final itemsPerPage = windowHeight ~/ itemViewHeight + 5;
