@@ -18,10 +18,13 @@ class _ListScreenState extends State<ListScreen> {
   final _biggerFont = const TextStyle(fontSize: 18.0);
   final _itemFetcher = _ItemFetcher();
 
+  /// 実行中にリストを上下に連続でスクロールしても_loadMoreが重複して実行させないための変数
   bool _isLoading = true;
+  
   bool _hasMore = true;
 
   void _loadMore(double windowHeight) {
+    print('_loadMoreだよ');
     _isLoading = true;
     _itemFetcher.fetch(windowHeight).then((List<WordPair> fetchedList) {
       if (fetchedList.isEmpty) {
@@ -52,7 +55,7 @@ class _ListScreenState extends State<ListScreen> {
       // Need to display a loading tile if more items are coming
       itemCount: _hasMore ? _pairList.length + 1 : _pairList.length,
       itemBuilder: (BuildContext context, int index) {
-        print('インデックス:$index');
+        // print('インデックス:$index');
         // Uncomment the following line to see in real time how ListView.builder works
         // print('ListView.builder is building index $index');
         if (index >= _pairList.length) {
@@ -82,18 +85,18 @@ class _ListScreenState extends State<ListScreen> {
 
 class _ItemFetcher {
   final _count = 103;
-  // final _itemsPerPage = 5;
+  final _itemsPerPage = 2;
   int _currentPage = 0;
 
   Future<List<WordPair>> fetch(double windowHeight) async {
     final list = <WordPair>[];
 
-    final itemsPerPage = windowHeight ~/ itemViewHeight + 5;
+    // final itemsPerPage = windowHeight ~/ itemViewHeight + 5;
 
-    final n = min(itemsPerPage, _count - _currentPage * itemsPerPage);
+    final n = min(_itemsPerPage, _count - _currentPage * _itemsPerPage);
     // Uncomment the following line to see in real time now items are loaded lazily.
     // print('Now on page $_currentPage');
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(seconds: 10), () {
       for (int i = 0; i < n; i++) {
         list.add(WordPair.random());
       }
