@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (context) => const RefreshIndicatorAndListview(),
+                    builder: (context) => const RefreshIndicatorAndListView(),
                   ),
                 );
               },
