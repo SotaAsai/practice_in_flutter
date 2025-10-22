@@ -27,20 +27,23 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => const RefreshIndicatorAndListview(),
-                ),
-              );
-            },
-            child: const Text('RefreshIndicator + ListView'),
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (context) => const RefreshIndicatorAndListview(),
+                  ),
+                );
+              },
+              child: const Text('RefreshIndicator + ListView'),
+            ),
+          ],
+        ),
       ),
     );
   }
